@@ -6,7 +6,6 @@
 package ca.sheridancollege.project;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * A concrete class that represents any grouping of cards for a Game. HINT, you might want to subclass this more than
@@ -17,39 +16,60 @@ import java.util.Collections;
  */
 public class GroupOfCards {
 
-    //The group of cards, stored in an ArrayList
     private ArrayList<Card> cards;
-    private int size;//the size of the grouping
 
-    public GroupOfCards(int size) {
-        this.size = size;
+    /**
+     * Constructs a new group of cards.
+     */
+    public GroupOfCards() {
+        this.cards = new ArrayList<Card>();
     }
 
     /**
-     * A method that will get the group of cards as an ArrayList
+     * Adds a card to the group.
      *
-     * @return the group of cards.
+     * @param card the card to add
      */
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-    public void shuffle() {
-        Collections.shuffle(cards);
+    public void addCard(Card card) {
+        this.cards.add(card);
     }
 
     /**
-     * @return the size of the group of cards
+     * Removes a card from the group.
+     *
+     * @param card the card to remove
+     * @return the removed card
      */
-    public int getSize() {
-        return size;
+    public boolean removeCard(Card card) {
+        return this.cards.remove(card);
     }
 
     /**
-     * @param size the max size for the group of cards
+     * Returns the number of cards in the group.
+     *
+     * @return the number of cards
      */
-    public void setSize(int size) {
-        this.size = size;
+    public int size() {
+        return this.cards.size();
     }
 
-}//end class
+    /**
+     * Returns a string representation of the group.
+     *
+     * @return the string representation
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Card card : this.cards) {
+            sb.append(card);
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
+
+    public Iterable<Card> getCards() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+}
